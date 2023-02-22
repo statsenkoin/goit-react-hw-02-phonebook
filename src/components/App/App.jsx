@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { initialContacts } from 'dataBase';
-import { Layout } from './App.siled';
-import { Form } from 'components';
+import {
+  Layout,
+  Title,
+  Notification,
+  ContactsTitle,
+  ContactListBox,
+} from './App.styled';
+import { Form, Filter, ContactList } from 'components';
 
 class App extends Component {
   state = {
@@ -45,37 +51,19 @@ class App extends Component {
     const filteredContacts = this.filterContactsByName();
     return (
       <Layout>
-        <h1>Phonebook</h1>
+        <Title>Phonebook</Title>
         <Form onSubmit={this.addContact}></Form>
+        <ContactsTitle>Contacts</ContactsTitle>
         {filteredContacts.length ? (
-          <div>
-            <label>
-              Find contacts by name
-              <input
-                type="text"
-                value={this.state.filter}
-                onChange={this.onFilter}
-              />
-            </label>
-            <ul>
-              {filteredContacts.map(({ id, name, number }) => {
-                return (
-                  <li key={id}>
-                    <span>{name}</span>
-                    <span>{number}</span>
-                    <button
-                      type="button"
-                      onClick={() => this.deleteContact(id)}
-                    >
-                      Delete
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <ContactListBox>
+            <Filter value={this.state.filter} onChange={this.onFilter}></Filter>
+            <ContactList
+              contacts={filteredContacts}
+              onClick={this.deleteContact}
+            ></ContactList>
+          </ContactListBox>
         ) : (
-          <p>No any contacts in phonebook</p>
+          <Notification>No any contacts in phonebook</Notification>
         )}
       </Layout>
     );
