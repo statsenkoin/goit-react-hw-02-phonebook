@@ -2,3 +2,4 @@
 2. Import stiled component module
    https://styled-components.com/docs/basics#getting-started
 3. Import PropTypes module https://www.npmjs.com/package/prop-types
+4. Import nanoId module https://github.com/ai/nanoid#readme
