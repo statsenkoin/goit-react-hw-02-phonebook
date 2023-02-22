@@ -15,7 +15,6 @@ class App extends Component {
 
   addContact = userData => {
     const newContact = { ...userData, id: nanoid(8) };
-    // let { contacts } = this.state;
     this.setState({ contacts: [newContact, ...this.state.contacts] });
   };
 
