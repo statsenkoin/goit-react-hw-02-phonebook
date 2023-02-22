@@ -3,31 +3,29 @@ import { nanoid } from 'nanoid';
 import { Layout } from './App.siled';
 import { Form } from 'components';
 
-// const initialContacts = [
-//   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-//   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-//   { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-//   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-// ];
+const initialContacts = [
+  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+  { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+  { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+  { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+];
 class App extends Component {
   state = {
-    contacts: [],
+    contacts: initialContacts,
     filter: '',
   };
 
   addContact = userData => {
     const { name: userName } = userData;
+    const { contacts } = this.state;
 
-    this.setState(({ contacts }) => {
-      let isContactExists = contacts.some(({ name }) => name === userName);
-      if (isContactExists) {
-        return alert(`${userName} is already in contacts!`);
-      }
-      const newContact = { ...userData, id: nanoid(8) };
-      return {
-        contacts: [newContact, ...contacts],
-      };
-    });
+    let isContactExists = contacts.some(({ name }) => name === userName);
+    if (isContactExists) {
+      return alert(`${userName} is already in contacts!`);
+    }
+
+    const newContact = { ...userData, id: nanoid(8) };
+    this.setState(({ contacts }) => ({ contacts: [newContact, ...contacts] }));
   };
 
   deleteContact = contactId => {
@@ -42,7 +40,6 @@ class App extends Component {
 
   filterContactsByName = () => {
     const { contacts, filter } = this.state;
-    // if (!contacts) return null;
     const normalizedFilter = filter.toLowerCase();
     return contacts.filter(({ name }) =>
       name.toLowerCase().includes(normalizedFilter)
@@ -55,28 +52,36 @@ class App extends Component {
       <Layout>
         <h1>Phonebook</h1>
         <Form onSubmit={this.addContact}></Form>
-        <label>
-          Find contacts by name
-          <input
-            type="text"
-            value={this.state.filter}
-            onChange={this.onFilter}
-          />
-        </label>
-        {filteredContacts && (
-          <ul>
-            {filteredContacts.map(({ id, name, number }) => {
-              return (
-                <li key={id}>
-                  <span>{name}</span>
-                  <span>{number}</span>
-                  <button type="button" onClick={() => this.deleteContact(id)}>
-                    Delete
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+
+        {filteredContacts.length ? (
+          <div>
+            <label>
+              Find contacts by name
+              <input
+                type="text"
+                value={this.state.filter}
+                onChange={this.onFilter}
+              />
+            </label>
+            <ul>
+              {filteredContacts.map(({ id, name, number }) => {
+                return (
+                  <li key={id}>
+                    <span>{name}</span>
+                    <span>{number}</span>
+                    <button
+                      type="button"
+                      onClick={() => this.deleteContact(id)}
+                    >
+                      Delete
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ) : (
+          <p>No any contacts in phonebook</p>
         )}
       </Layout>
     );
