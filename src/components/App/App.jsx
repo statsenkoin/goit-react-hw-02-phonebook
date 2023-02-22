@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { nanoid } from 'nanoid';
 import { Layout } from './App.siled';
 import { Form } from 'components';
 
@@ -12,8 +13,10 @@ class App extends Component {
     ],
   };
 
-  addContact = data => {
-    console.log('data :>> ', data);
+  addContact = userData => {
+    const newContact = { ...userData, id: nanoid(8) };
+    // let { contacts } = this.state;
+    this.setState({ contacts: [newContact, ...this.state.contacts] });
   };
 
   render() {
