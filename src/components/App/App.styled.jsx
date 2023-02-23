@@ -6,7 +6,7 @@ export const Layout = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 440px;
+  width: 550px;
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
@@ -22,6 +22,11 @@ export const Layout = styled.div`
 
 export const Title = styled.h1`
   font-size: 38px;
+`;
+
+export const FormsWrapper = styled.div`
+  display: flex;
+  gap: 20px;
 `;
 
 export const ContactsTitle = styled.h2`
