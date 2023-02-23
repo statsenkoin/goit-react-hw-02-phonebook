@@ -8,7 +8,7 @@ import {
   ContactsTitle,
   ContactListBox,
 } from './App.styled';
-import { ContactForm, Filter, ContactList } from 'components';
+import { ContactForm, Filter, ContactList, FormikForm } from 'components';
 
 class App extends Component {
   state = {
@@ -53,6 +53,7 @@ class App extends Component {
       <Layout>
         <Title>Phonebook</Title>
         <ContactForm onSubmit={this.addContact}></ContactForm>
+        <FormikForm onSubmit={this.addContact}></FormikForm>
         <ContactsTitle>Contacts</ContactsTitle>
         {filteredContacts.length ? (
           <ContactListBox>
