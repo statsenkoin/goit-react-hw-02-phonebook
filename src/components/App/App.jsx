@@ -4,6 +4,7 @@ import { initialContacts } from 'dataBase';
 import {
   Layout,
   Title,
+  FormsWrapper,
   Notification,
   ContactsTitle,
   ContactListBox,
@@ -52,8 +53,10 @@ class App extends Component {
     return (
       <Layout>
         <Title>Phonebook</Title>
-        <ContactForm onSubmit={this.addContact}></ContactForm>
-        <FormikForm onSubmit={this.addContact}></FormikForm>
+        <FormsWrapper>
+          <ContactForm onSubmit={this.addContact}></ContactForm>
+          <FormikForm onSubmit={this.addContact}></FormikForm>
+        </FormsWrapper>
         <ContactsTitle>Contacts</ContactsTitle>
         {filteredContacts.length ? (
           <ContactListBox>
