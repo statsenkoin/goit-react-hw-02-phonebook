@@ -6,7 +6,7 @@ export const Layout = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 550px;
+  width: fit-content;
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
