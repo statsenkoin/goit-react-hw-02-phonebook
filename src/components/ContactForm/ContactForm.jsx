@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FormWrapper, Label, AddContactButton } from './Form.styled';
+import { FormWrapper, Label, AddContactButton } from './ContactForm.styled';
 
-class Form extends Component {
+class ContactForm extends Component {
   state = {
     name: '',
     number: '',
@@ -30,7 +30,7 @@ class Form extends Component {
     const { name, number } = this.state;
     return (
       <FormWrapper onSubmit={this.onSubmit}>
-        <Label>
+        <Label htmlFor="name">
           Name:
           <input
             type="text"
@@ -42,7 +42,7 @@ class Form extends Component {
             required
           />
         </Label>
-        <Label>
+        <Label htmlFor="number">
           Number:
           <input
             type="tel"
@@ -60,8 +60,8 @@ class Form extends Component {
   }
 }
 
-export { Form };
+export { ContactForm };
 
-Form.propTypes = {
+ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
