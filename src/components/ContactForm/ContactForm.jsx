@@ -30,7 +30,7 @@ class ContactForm extends Component {
     const { name, number } = this.state;
     return (
       <FormWrapper onSubmit={this.onSubmit}>
-        <p>ContactForm</p>
+        {/* <p>ContactForm</p> */}
         <Label htmlFor="name">
           Name:
           <input
