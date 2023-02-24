@@ -51,6 +51,7 @@ class App extends Component {
 
   render() {
     const filteredContacts = this.filterContactsByName();
+    const { contacts, filter } = this.state;
     return (
       <Layout>
         <Title>Phonebook</Title>
@@ -59,9 +60,9 @@ class App extends Component {
           <FormikForm onSubmit={this.addContact}></FormikForm>
         </FormsWrapper>
         <ContactsTitle>Contacts</ContactsTitle>
-        {filteredContacts.length ? (
+        {contacts.length ? (
           <ContactListBox>
-            <Filter value={this.state.filter} onChange={this.onFilter}></Filter>
+            <Filter value={filter} onChange={this.onFilter}></Filter>
             <ContactList
               contacts={filteredContacts}
               onClick={this.deleteContact}
